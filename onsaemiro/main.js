@@ -26,7 +26,13 @@ const swiper = new Swiper('.g-slider', {
         el: '.products-grid .swiper-pagination',
     },
     navigation: {
-        nextEl: '.swiper-direction .swiper-button-next',
-        prevEl: '.swiper-direction .swiper-button-prev',
+         nextEl: '.progrid-wrap .swiper-button-next',
+         prevEl: '.progrid-wrap .swiper-button-prev',
     },
+});
+
+// aos 스크립트 라이브러리
+AOS.init({
+    duration: 1000,
+    delay: 200
 });
