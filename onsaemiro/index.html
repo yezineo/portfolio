@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="../onsaemiro/css/main.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -36,34 +39,34 @@
         <main>
             <section class="hero-sec">
                <div class="hero-txt">
-                 <h2>자연 그대로의 정성을 담다<br>온새미로 농장</h2>
-                 <p>언제나 변함없이, 건강한 먹거리를 위해 정성을 다합니다.</p>
+                 <h2 data-aos="fade-up" data-aos-delay="300">자연 그대로의 정성을 담다<br>온새미로 농장</h2>
+                 <p data-aos="fade-up" data-aos-delay="400">언제나 변함없이, 건강한 먹거리를 위해 정성을 다합니다.</p>
                </div>
             </section>
 
             <section class="products-sec">
                  <img src="../onsaemiro/img/cherry.svg" alt="" class="deco cherry-1">
                  <img src="../onsaemiro/img/cherry.svg" alt="" class="deco cherry-2">
-                 <img src="../onsaemiro/img/apple.svg" alt="" class="deco apple-3">
-                 <img src="../onsaemiro/img/apple.svg" alt="" class="deco apple-4">
                  <img src="../onsaemiro/img/apple.svg" alt="" class="deco apple-5">
                  
                 <div class="products-main">
-                    <div class="promain-txt">
-                        <h3>온새미로 농산물</h3>
-                        <p>계절의 흐름을 따라 가장 좋은 시기에 수확합니다.</p>
+                    <div class="promain-txt sec-txt">
+                        <h3 class="sec-tit">온새미로 농산물</h3>
+                        <p  class="sec-desc">계절의 흐름을 따라 가장 좋은 시기에 수확합니다.</p>
                     </div>
                     <div class="promain-list">
-                        <img src="../onsaemiro/img/red-cherry.png" alt="레이니어체리">
-                        <img src="../onsaemiro/img/yell-cherry.png" alt="노란체리">
-                        <img src="../onsaemiro/img/apple1.png" alt="사과">
+                        <img src="../onsaemiro/img/red-cherry.png" alt="레이니어체리" data-aos="fade-up" data-aos-delay="300">
+                        <img src="../onsaemiro/img/yell-cherry.png" alt="노란체리" data-aos="fade-up" data-aos-delay="600">
+                        <img src="../onsaemiro/img/apple1.png" alt="사과" data-aos="fade-up" data-aos-delay="900">
                     </div>
                 </div>
 
                 <div class="products-grid">
-                    <div class="progrid-txt">
-                        <h3>함께 만나볼 수 있어요</h3>
-                        <p>계절에 따라 다양한 농산물도 함께 판매하고 있습니다.</p>
+                    <img src="../onsaemiro/img/apple.svg" alt="" class="deco apple-3">
+                    <img src="../onsaemiro/img/apple.svg" alt="" class="deco apple-4">
+                    <div class="progrid-txt sec-txt">
+                        <h3 class="sec-tit">함께 만나볼 수 있어요</h3>
+                        <p class="sec-desc">계절에 따라 다양한 농산물도 함께 판매하고 있습니다.</p>
                     </div>
                     <div class="season-tabs">
                         <button data-season="spring">봄</button>
@@ -71,19 +74,19 @@
                         <button data-season="fall">가을</button>
                         <button data-season="winter">겨울</button>
                     </div>
-                    <div class="progrid-slider swiper g-slider">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="../onsaemiro/img/progrid(1).png" alt="노란체리"></div>
-                            <div class="swiper-slide"><img src="../onsaemiro/img/progrid(2).png" alt="마늘"></div>
-                            <div class="swiper-slide"><img src="../onsaemiro/img/progrid(3).png" alt="사과"></div>
-                            <div class="swiper-slide"><img src="../onsaemiro/img/progrid(4).png" alt="옥수수"></div>
-                            <div class="swiper-slide"><img src="../onsaemiro/img/progrid(5).png" alt="깻잎"></div>
-                            <div class="swiper-slide"><img src="../onsaemiro/img/progrid(1).png" alt="노란체리"></div>
-                            <div class="swiper-slide"><img src="../onsaemiro/img/progrid(2).png" alt="마늘"></div>
-                            <div class="swiper-slide"><img src="../onsaemiro/img/progrid(3).png" alt="사과"></div>
+                    <div class="progrid-wrap">
+                        <div class="progrid-slider swiper g-slider">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="../onsaemiro/img/progrid(1).png" alt="노란체리"></div>
+                                <div class="swiper-slide"><img src="../onsaemiro/img/progrid(2).png" alt="마늘"></div>
+                                <div class="swiper-slide"><img src="../onsaemiro/img/progrid(3).png" alt="사과"></div>
+                                <div class="swiper-slide"><img src="../onsaemiro/img/progrid(4).png" alt="옥수수"></div>
+                                <div class="swiper-slide"><img src="../onsaemiro/img/progrid(5).png" alt="깻잎"></div>
+                                <div class="swiper-slide"><img src="../onsaemiro/img/progrid(1).png" alt="노란체리"></div>
+                                <div class="swiper-slide"><img src="../onsaemiro/img/progrid(2).png" alt="마늘"></div>
+                                <div class="swiper-slide"><img src="../onsaemiro/img/progrid(3).png" alt="사과"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="swiper-direction">
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-button-next"></div>
                     </div>
@@ -91,11 +94,25 @@
                 </div>
             </section>
 
-            <section class="story-sec"></section>
-            <section class="benefits-sec"></section>
+            <section class="story-sec sec-pad">
+                <div class="story-txt sec-txt">
+                    <img src="../onsaemiro/img/at-icons_sprout.svg" alt="" class="story-icon">
+                    <h3 class="sec-tit">온새미로 이야기</h3>
+                    <p class="sec-desc">35년간 키워온 온새미로 농장을 소개합니다.</p>
+                </div>
+                <div class="story-card" data-aos="fade" data-aos-anchor-placement="center-bottom">
+                    <div class="story-card-txt" data-aos="fade-up" data-aos-delay="300" data-aos-anchor=".story-card" data-aos-anchor-placement="center-bottom">
+                        <p class="story-highlight">온새미로는<br>'언제나 변함없이 자연 그대로'<br>라는 뜻을 담은 순우리말입니다.</p>
+                        <p class="story-body">부모님은 이 뜻에 담긴 마음처럼,<br>오랜 시간 밭을 일구며 정직한 정성으로
+                        <br>농산물을 키워왔습니다.<br>인위적인 가공 없이 자연이 주는 선물 그대로를
+                        <br>책임지고 보내드립니다.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- <section class="benefits-sec"></section>
             <section class="review-sec"></section>
             <section class="gallery-sec"></section>
-            <section class="contact-sec"></section>
+            <section class="contact-sec"></section> -->
         </main>
 
         <footer></footer>
