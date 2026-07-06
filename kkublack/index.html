@@ -147,14 +147,105 @@
                 style.paddingTop
             -->
 
-            <section class="hero-sec heading scroll" id="brand">
-                <div class="txt-ani">
+            <section class="hero-sec heading" id="brand">
+                <div class="txt-ani" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="1500">
                     <div><strong>멈출수 없는 맛</strong></div>
                     <div><strong>불맛을 제대로</strong></div>
                 </div>
-                <h2>꾸블랙치킨</h2>
+                <h2 data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="1800">꾸블랙치킨</h2>
                 <p>1만 시간의 집념으로 제대로 구웠다.</p>
             </section>
+
+            <script> // 히어로섹션 클립패스 스크립트
+                window.addEventListener("load", function() {
+                    document.querySelector(".hero-sec").classList.add("open");
+                })
+
+                let progress = 0;
+                let isHeroLocked = false;
+                let scrollPosY = 0;
+                const TOTAL = 1200;
+                let isUnlocking = false;
+                const heroPanel = document.querySelector("#brand");
+
+                window.addEventListener('wheel', (e) => {
+                    // 마우스 휠을 아래로 휠 양수(true), 위로 휠 음수(false)
+                    // 아래인지, 위인지를 판단하는 것!
+                    const goingDown = e.deltaY > 0;
+                    // console.log(e.deltaY);
+                    //getBoundingClientRect() 현재요소가 화면의 어디에 있는지 알려주는 함수
+                    const heroRect = heroPanel.getBoundingClientRect();
+                    // console.log(heroRect);
+                    // 요소의 아래쪽 끝이 화면의 맨 위(0px)에서 얼마나 떨어져 있는지 heroRect.bottom
+                    // 히어로 화면 아래쪽 끝이 아직 화면 위보다 아래에 있다면 true, 즉 화면에 아직 보이는 상태
+                    bottom = -50; // 히어로 섹션을 완전히 지나갔는가를 체크하는 것 
+                    const isHeroVisble = heroRect.bottom > 0;
+
+                    //일반 스크롤 상태일때만 실행
+                    if(!isHeroLocked) {
+                        // 아래로 스크롤 + hero섹션보임 + 아직 애니메이션이 안 끝남을 모두 만족
+                        const lockDown = goingDown && isHeroVisble && progress < 1;
+                        // 위로 스크롤 + 맨위 + 애니메이션이 끝난 상태이면 역재생
+                        const lockUp = !goingDown && window.scrollY <= 0 && progress > 0;
+        
+                        // 아래 또는 위 조건이 만족된 경우 (둘중 하나만 만족이 되면)
+                        if(lockDown || lockUp) {
+                            // 스크롤 잠금 상태
+                            isHeroLocked = true;
+                            // 이전 예약 남았다면 초기화
+                            isUnlocking = false;
+                            // 현재 위치 저장후 hidden(페이지 이동 화면을 막음)
+                            scrollPosY = window.scrollY;
+                            document.documentElement.style.overflow = "hidden";
+                        }
+                    }
+
+                    // 잠겨있는 동안 실행(잠긴상태에서만)
+                    if(isHeroLocked) {
+                        // 기본 스크롤(해당이벤트)를 막음 (preventDefault();)
+                        e.preventDefault();
+                        // 스크롤 위치 고정 (아까 저장한 위치로 계속 되돌려야 화면이 움직이지 않음)
+                        window.scrollTo(0, scrollPosY);
+                        // 120 / 1200 = 0.1 progress가 0.1, 0.2, 0.3으로 증가
+                        progress += e.deltaY / TOTAL;
+                        // -0.2면 0 1이 넘어가면 1로 제한하여 변환
+                        progress = Math.min(Math.max(progress, 0), 1);
+                        // css로 적용
+                        heroPanel.style.setProperty("--progress", progress);
+
+                        // 애니메이션 끝남 아직 스크롤 해제를 예약하지 않았다면 실행
+                        if(progress >= 1 && !isUnlocking) {
+                            // 중복예약 방지
+                            isUnlocking = true;
+
+                            setTimeout(() => {
+                                // 사용자가 다시 위로 돌리지 않았다면 
+                                if(progress >= 1) {
+                                    // 잠금을 해제하자
+                                    isHeroLocked = false;
+                                    document.documentElement.style.overflow = "auto";
+                                }
+                                // 예약상태를 초기화
+                                isUnlocking = false;
+                            }, 600);
+                        }
+
+                        // 역재생 종료 - 잠금해제후 일반스크롤로 돌아감.
+                        if(progress <= 0) {
+                            isHeroLocked = false;
+                            document.documentElement.style.overflow = "auto";
+                        }
+                    }
+                }, {passive : false});
+                // wheel 이벤트 안에서 preventDefault()를 사용할 것이다 라고 브라우저에게 알림
+                // wheel, touch 이벤트안에서는 기본적으로 스크롤을 막지 않을거지? 라고 동작함
+            </script>
+            <!-- 
+                사용자가 휠을 돌림
+                -> 아래또는 위 스크롤인지 확인 -> hero가 화면에 있는지 확인 -> 스크롤 잠금 -> progress값 증가 (0 -> 1)
+                -> css 변수 변경(--progress) -> 텍스트 위치와 투명도 애니메이션 실행(css작업) -> progress = 1 -> 600ms 대기
+                -> 스크롤 잠금해제 -> 다음섹션 이동. 
+            -->
 
             <div class="banner-wrap heading">
                 <div class="banner-track">
