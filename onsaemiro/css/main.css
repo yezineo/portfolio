@@ -751,6 +751,10 @@ nav a {
     max-height: 60%;
     object-fit: contain;
 }
+.partner-list li img.logo-nh {
+    max-width: 45%;
+    max-height: 40%;
+}
 
 @keyframes partner-roll {
     from { transform: translateX(-50%); }
@@ -782,6 +786,10 @@ nav a {
         max-width: 60%;
         max-height: 55%;
     }
+    .partner-list li img.logo-nh {   
+        max-width: 42%;
+        max-height: 38%;
+    }
 }
 
 /* gallery-sec */
@@ -807,7 +815,7 @@ nav a {
     flex-direction: column;
     align-items: center;
     padding: 0 clamp(16px, 4vw, 40px);
-    margin: 0 auto clamp(48px, 6vw, 72px);   /* auto로 가운데 */
+    margin: 0 auto clamp(36px, 6vw, 72px);   /* auto로 가운데 */
     max-width: clamp(320px, 80vw, 1500px);
     border-bottom: 2px solid color-mix(in srgb, var(--slider-green) 25%, transparent);
     padding-bottom: 24px;
