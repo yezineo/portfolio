@@ -51,7 +51,6 @@ body {
     font-family: 'Paperozi', sans-serif;
     color: var(--black);
 }
-
 #wrap {
     min-width: 360px;
 }
@@ -671,13 +670,85 @@ nav a {
 .review-slider {
     overflow: hidden;
 }
-.review-slider .swiper-slide img {
-    width: 100%;
+/* 리뷰 카드 */
+.review-slider .swiper-slide {
     height: auto;
-    display: block;
-    border-radius: clamp(16px, 2vw, 24px);
+    padding: 30px 30px 60px;   /* 아래쪽은 그림자가 제일 길게 퍼지니 넉넉하게 */
+    box-sizing: border-box;
 }
-
+.rv-card {
+    display: flex;
+    gap: clamp(24px, 3.5vw, 56px);
+    height: 100%;
+    padding: clamp(20px, 2vw, 28px);
+    background-color: var(--white);
+    border-radius: clamp(16px, 2vw, 24px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+}
+.rv-photo {
+    flex-shrink: 0;
+    width: 40%;
+    aspect-ratio: 1 / 1;
+}
+.rv-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: clamp(12px, 1.6vw, 20px);
+}
+.rv-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+.rv-stars {
+    display: flex;
+    gap: 4px;
+}
+.rv-stars img {
+    width: clamp(18px, 2.2vw, 26px);
+    height: auto;
+}
+.rv-title {
+    margin-top: clamp(12px, 1.6vw, 20px);
+    font-size: clamp(18px, 2.4vw, 28px);
+    font-weight: 600;
+    color: var(--black);
+}
+.rv-desc {
+    margin-top: clamp(10px, 1.4vw, 16px);
+    font-size: clamp(14px, 1.7vw, 18px);
+    line-height: 1.7;
+    color: var(--black-soft);
+    min-height: calc(1.7em * 2);  
+}
+.rv-meta {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 1.6vw, 20px);
+    margin-top: clamp(20px, 2.8vw, 36px);
+    padding-top: clamp(16px, 2vw, 24px);
+    border-top: 1px solid var(--gray-400-pn);
+    font-size: clamp(13px, 1.5vw, 16px);
+    color: var(--black);
+}
+.rv-user,
+.rv-product {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.rv-meta img {
+    width: clamp(16px, 1.8vw, 20px);
+    height: auto;
+}
+.rv-divider {
+    width: 1px;
+    height: 14px;
+    background-color: var(--gray-400-pn);
+}
 /* 화살표 */
 .review-wrap-prev,
 .review-wrap-next {
@@ -740,8 +811,8 @@ nav a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: clamp(160px, 22vw, 380px);
-    height: clamp(55px, 10.4vw, 160px);
+    width: clamp(160px, 22vw, 350px);
+    height: clamp(55px, 10.4vw, 150px);
     background-color: var(--white);
     border: 1px solid var(--gray-500-border);
     border-radius: clamp(12px, 2vw, 24px);
@@ -757,7 +828,7 @@ nav a {
 }
 
 @keyframes partner-roll {
-    from { transform: translateX(-50%); }
+    from { transform: translateX(-33.333%); }
     to   { transform: translateX(0); }
 }
 
@@ -767,8 +838,8 @@ nav a {
     .review-wrap-next {
         display: none;
     }
-    .review-wrap {
-        padding: 0;
+     .review-wrap {
+        padding: 0 24px;   /* 기존 0 → 좌우 여백 확보 */
     }
 }
 @media (max-width: 768px) {
@@ -790,6 +861,58 @@ nav a {
         max-width: 42%;
         max-height: 38%;
     }
+
+   /* 리뷰 카드 세로 전환 */
+    .review-slider .swiper-slide {
+        padding: 16px 12px 40px;
+    }
+    .rv-card {
+        flex-direction: column;
+        gap: 16px;
+        max-width: 490px;
+        margin: 0 auto;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    }
+    .rv-photo {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+        max-height: 260px;
+    }
+    .rv-content {
+        justify-content: flex-start;
+    }
+    .rv-stars img {
+        width: 16px;
+    }
+    .rv-title {
+        font-size: 17px;
+    }
+    .rv-desc {
+        min-height: auto;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    .rv-desc br {
+        display: none;
+    }
+    .rv-meta {
+        flex-wrap: wrap;
+        row-gap: 8px;
+        margin-top: 16px;
+        padding-top: 14px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 411px) {
+    .rv-divider {
+        display: none;
+    }
+    .rv-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 6px;
+    }
 }
 
 /* gallery-sec */
@@ -809,6 +932,7 @@ nav a {
     overflow: hidden;
     padding-left: 0;
     padding-right: 0;
+    background-attachment: fixed;
 }
 .gallery-txt {
     display: flex;
@@ -884,10 +1008,13 @@ nav a {
     .gallery-inner {
         flex-direction: column;
         align-items: flex-start;
-        gap: 24px;
+        gap: 16px;           /* 라벨↔갤러리 세로 간격 */
     }
     .gallery-roll {
         width: 100%;
+    }
+    .gallery-list {
+        animation-duration: 18s;   /* 모바일 롤링 속도 */
     }
     .gallery-eng {
         margin-bottom: 3px;
@@ -899,10 +1026,198 @@ nav a {
         flex: none;          /* 폭 고정 해제 */
         padding-top: 0;      /* 위 여백도 제거 */
     }
-    .gallery-inner {
-        gap: 16px;           /* 라벨↔갤러리 세로 간격 줄이기 (기존 24px) */
-    }
 }
 
 /* contact-sec */
+.contact-sec {
+    position: relative;
+    min-height: 100vh;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--f-back);
+    color: var(--white);
+    text-align: center;
+
+    padding: clamp(60px, 8vw, 120px) clamp(16px, 4vw, 40px);
+}
+.contact-cloud {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: -1px;
+}
+.contact-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.contact-icon {
+    display: block;
+    width: clamp(36px, 5vw, 60px);
+    height: auto;
+    margin: 0 auto;
+}
+.contact-tit {
+    font-size: clamp(22px, 4vw, 48px);
+    font-weight: 700;
+}
+.contact-desc {
+    font-size: clamp(13px, 2vw, 24px);
+    font-weight: 500;
+}
+.contact-btn {
+    display: inline-block;
+    margin-top: clamp(20px, 3vw, 30px);
+    padding: clamp(12px, 1.6vw, 18px) clamp(24px, 4vw, 48px);
+    font-size: clamp(13px, 1.6vw, 18px);
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--f-txt);   /* 시안의 진갈색 버튼 */
+    border-radius: 16px;
+}
+.contact-sub {
+    font-size: clamp(11px, 1.4vw, 15px);
+    font-weight: 300;
+    margin-top: clamp(20px, 3vw, 30px);
+}
+.m-br { display: none; }
+
+/* Mobile */
+@media (max-width: 500px) {
+    .m-br { display: block; }
+}
+
+/* footer */
+footer {
+    background-color: var(--f-back);
+    color: var(--white);
+    padding: clamp(40px, 5vw, 64px) clamp(16px, 4vw, 40px);
+}
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1600px;
+    margin: 0 auto;
+    gap: 24px;
+    padding-top: clamp(32px, 5vw, 56px);   /* 선이랑 로고 사이 여백 */
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 왼쪽 */
+.f-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;        /* 로고 ↔ 아이콘 그룹 간격 */
+    margin-bottom: clamp(16px, 2.5vw, 24px);
+}
+.f-brand img {
+    width: 159px;
+    height: 40px;
+}
+.f-sns {
+    display: flex;
+    gap: 6px;         /* 아이콘끼리 간격 */
+}
+.f-sns a img {
+    width: 30px;
+    height: 30px;
+}
+.f-txt p {
+    font-size: clamp(13px, 1.5vw, 16px);
+    line-height: 1.9;
+}
+/* 데스크탑: 한 줄 + 파이프 */
+.f-txt p span + span::before {
+    content: '|';
+    margin: 0 10px;
+}
+.f-copy {
+    margin-top: clamp(16px, 2.5vw, 24px);
+    font-size: clamp(12px, 1.3vw, 14px);
+}
+
+/* 오른쪽 */
+.right {
+    text-align: right;
+    flex-shrink: 0;
+}
+.r-spacer {
+    height: 40px;                            /* 로고 높이와 동일 */
+    margin-bottom: clamp(16px, 2.5vw, 24px); /* .f-brand margin-bottom과 동일 */
+}
+.right p:first-of-type {
+    font-size: clamp(13px, 1.5vw, 16px);
+}
+.right .f-tel {
+    font-size: clamp(16px, 3vw, 24px);
+    font-weight: 600;
+    margin: 6px 0;
+}
+.right p:last-child {
+    font-size: clamp(11px, 1.3vw, 14px);
+    opacity: 0.8;
+}
+
+/* Mobile */
+@media (max-width: 1024px) {
+    .right .f-tel {
+        font-size: 22px;
+    }
+}
+/* 모바일: 두 줄 + 파이프 제거 */
+@media (max-width: 900px) {
+    .f-txt p span {
+        display: block;
+    }
+    .f-txt p span + span::before {
+        content: none;
+    }
+}
+/* 좁은 태블릿: 좌우 유지하되 촘촘하게 */
+@media (max-width: 768px) {
+    .footer-inner {
+        gap: 20px;
+    }
+    .right .f-tel {
+        font-size: 20px;
+    }
+    .f-txt p,
+    .right p:first-of-type,
+    .right p:last-child {
+        font-size: 13px;
+    }
+    .f-copy {
+        font-size: 12px;
+    }
+     .f-brand img {
+        width: 130px;
+        height: 33px;
+    }
+    .r-spacer {
+        height: 33px;
+    }
+    .f-sns a img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* 모바일: 세로 쌓기 + 전화문의 숨김 */
+@media (max-width: 700px) {
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: clamp(24px, 6vw, 36px);
+    }
+    .right {
+        display: none;
+    }
+}
