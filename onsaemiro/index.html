@@ -22,10 +22,10 @@
                 <h1><a href="index.html"><img src="../onsaemiro/img/logo_1.svg" alt="온새미로 로고"></a></h1>
                 <nav>
                     <ul>
-                        <li><a href="#">대표 농산물</a></li>
-                        <li><a href="#">온새미로 이야기</a></li>
-                        <li><a href="#">농장 갤러리</a></li>
-                        <li><a href="#">주문 / 문의하기</a></li>
+                        <li><a href="#products">대표 농산물</a></li>
+                        <li><a href="#story">온새미로 이야기</a></li>
+                        <li><a href="#gallery">농장 갤러리</a></li>
+                        <li><a href="#contact">주문 / 문의하기</a></li>
                     </ul>
                 </nav>
                 <button class="menu-btn">
@@ -36,14 +36,14 @@
             </div>
         </header>
         
-        <main>
+        <div class="main">
             <section class="hero-sec">
                <div class="hero-txt">
                  <h2>자연 그대로의 정성을 담다<br>온새미로 농장</h2>
                  <p>언제나 변함없이, 건강한 먹거리를 위해 정성을 다합니다.</p>
                </div>
             </section>
-            <section class="products-sec">
+            <section class="products-sec" id="products">
                  <img src="../onsaemiro/img/cherry.svg" alt="" class="deco cherry-1">
                  <img src="../onsaemiro/img/cherry.svg" alt="" class="deco cherry-2">
                  <img src="../onsaemiro/img/apple.svg" alt="" class="deco apple-5">
@@ -92,7 +92,7 @@
                     <div class="swiper-pagination"></div>
                 </div>
             </section>
-            <section class="story-sec sec-pad">
+            <section class="story-sec sec-pad" id="story">
                 <div class="story-txt sec-txt">
                     <img src="../onsaemiro/img/at-icons_sprout.svg" alt="" class="story-icon">
                     <h3 class="sec-tit">온새미로 이야기</h3>
@@ -291,77 +291,181 @@
                     </div>
                 </div>
             </section>
-            <section class="gallery-sec sec-pad">
-                <div class="gallery-txt sec-txt">
-                    <h3 class="sec-tit">농장 갤러리</h3>
-                    <p class="sec-desc">자연이 자라는 순간들을 만나보세요.</p>
-                </div>
-
-                <div class="gallery-inner">
-                    <div class="gallery-label">
-                        <p class="gallery-eng">ONSAE<br>MIRO</p>
-                        <p class="gallery-sub">온새미로의 사계절</p>
+            <div class="relative">
+                <section class="gallery-sec sec-pad" id="gallery">
+                    <div class="gallery-txt sec-txt">
+                        <h3 class="sec-tit">농장 갤러리</h3>
+                        <p class="sec-desc">자연이 자라는 순간들을 만나보세요.</p>
                     </div>
 
-                    <div class="gallery-roll">
-                        <ul class="gallery-list">
-                            <!-- 1세트 -->
-                            <li><img src="../onsaemiro/img/gallery1.jpg" alt=""></li>
-                            <li><img src="../onsaemiro/img/gallery4.jpg" alt=""></li>
-                            <li><img src="../onsaemiro/img/gallery3.jpg" alt=""></li>
-                            <li><img src="../onsaemiro/img/gallery2.jpg" alt=""></li>
-                            <li><img src="../onsaemiro/img/gallery5.jpg" alt=""></li>
-                            <li><img src="../onsaemiro/img/gallery6.jpg" alt=""></li>
-                            <!-- 2세트(복제) -->
-                            <li aria-hidden="true"><img src="../onsaemiro/img/gallery1.jpg" alt=""></li>
-                            <li aria-hidden="true"><img src="../onsaemiro/img/gallery4.jpg" alt=""></li>
-                            <li aria-hidden="true"><img src="../onsaemiro/img/gallery3.jpg" alt=""></li>
-                            <li aria-hidden="true"><img src="../onsaemiro/img/gallery2.jpg" alt=""></li>
-                            <li aria-hidden="true"><img src="../onsaemiro/img/gallery5.jpg" alt=""></li>
-                            <li aria-hidden="true"><img src="../onsaemiro/img/gallery6.jpg" alt=""></li>
-                        </ul>
+                    <div class="gallery-inner">
+                        <div class="gallery-label">
+                            <p class="gallery-eng">ONSAE<br>MIRO</p>
+                            <p class="gallery-sub">온새미로의 사계절</p>
+                        </div>
+
+                        <div class="gallery-roll">
+                            <ul class="gallery-list">
+                                <!-- 1세트 -->
+                                <li><img src="../onsaemiro/img/gallery1.jpg" alt=""></li>
+                                <li><img src="../onsaemiro/img/gallery4.jpg" alt=""></li>
+                                <li><img src="../onsaemiro/img/gallery3.jpg" alt=""></li>
+                                <li><img src="../onsaemiro/img/gallery2.jpg" alt=""></li>
+                                <li><img src="../onsaemiro/img/gallery5.jpg" alt=""></li>
+                                <li><img src="../onsaemiro/img/gallery6.jpg" alt=""></li>
+                                <!-- 2세트(복제) -->
+                                <li aria-hidden="true"><img src="../onsaemiro/img/gallery1.jpg" alt=""></li>
+                                <li aria-hidden="true"><img src="../onsaemiro/img/gallery4.jpg" alt=""></li>
+                                <li aria-hidden="true"><img src="../onsaemiro/img/gallery3.jpg" alt=""></li>
+                                <li aria-hidden="true"><img src="../onsaemiro/img/gallery2.jpg" alt=""></li>
+                                <li aria-hidden="true"><img src="../onsaemiro/img/gallery5.jpg" alt=""></li>
+                                <li aria-hidden="true"><img src="../onsaemiro/img/gallery6.jpg" alt=""></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </section>
-        </main>
-        <section class="contact-sec" data-aos="fade-up">
-            <img src="../onsaemiro/img/cloud.svg" alt="" class="contact-cloud">
-            <div class="contact-inner">
-                <img src="../onsaemiro/img/truckicon.svg" alt="" class="contact-icon">
-                <h3 class="contact-tit">주문 및 문의</h3>
-                <p class="contact-desc">신선한 제철 농산물, 편하게 문의해 주세요.</p>
-                <a href="#" class="contact-btn">카카오톡 문의하기</a>
-                <p class="contact-sub">수확 시기에 따라 품목이 달라질 수 있습니다. <br class="m-br">재고 및 가격은 문의 시 안내해 드립니다.</p>
+                </section>
+                <section class="bg"></section>
             </div>
-        </section>
-
-        <footer>
-            <div class="footer-inner">
-                <div class="left">
-                    <div class="f-brand">
-                        <img src="../onsaemiro/img/logo_white.svg" alt="온새미로 로고">
-                        <span class="f-sns">
-                            <a href="#"><img src="../onsaemiro/img/blog.svg" alt="블로그"></a>
-                            <a href="#"><img src="../onsaemiro/img/Instagram.svg" alt="인스타그램"></a>
-                        </span>
+            <div class="sticky-box">
+                <section class="contact-sec" id="contact">
+                    <img src="../onsaemiro/img/cloud.svg" alt="" class="contact-cloud">
+                    <div class="contact-inner">
+                        <img src="../onsaemiro/img/truckicon.svg" alt="" class="contact-icon">
+                        <h3 class="contact-tit">주문 및 문의</h3>
+                        <p class="contact-desc">신선한 제철 농산물, 편하게 문의해 주세요.</p>
+                        <a href="#" class="contact-btn">카카오톡 문의하기</a>
+                        <p class="contact-sub">수확 시기에 따라 품목이 달라질 수 있습니다. <br class="m-br">재고 및 가격은 문의 시 안내해 드립니다.</p>
                     </div>
-                    <div class="f-txt">
-                        <p><span>대표 : 장규상 · 조옥희</span><span>농장 주소 : 충청북도 단양군 대강면 신구 무수천길 150</span></p>
-                        <p><span>Tel : 010 - 6409 - 3104</span><span>Email : yezineo@naver.com</span></p>
-                        <p>사업자등록번호 : 512 - 93 - 31371</p>
+                </section>
+                <footer>
+                    <div class="footer-inner">
+                        <div class="left">
+                            <div class="f-brand">
+                                <img src="../onsaemiro/img/logo_white.svg" alt="온새미로 로고">
+                                <span class="f-sns">
+                                    <a href="#"><img src="../onsaemiro/img/blog.svg" alt="블로그"></a>
+                                    <a href="#"><img src="../onsaemiro/img/Instagram.svg" alt="인스타그램"></a>
+                                </span>
+                            </div>
+                            <div class="f-txt">
+                                <p><span>대표 : 장규상 · 조옥희</span><span>농장 주소 : 충청북도 단양군 대강면 신구 무수천길 150</span></p>
+                                <p><span>Tel : 010 - 6409 - 3104</span><span>Email : yezineo@naver.com</span></p>
+                                <p>사업자등록번호 : 512 - 93 - 31371</p>
+                            </div>
+                            <p class="f-copy">
+                                © 2026 Onsaemiro. All rights reserved.
+                            </p>
+                        </div>
+                        <div class="right">
+                            <div class="r-spacer" aria-hidden="true"></div>
+                            <p>전화문의</p>
+                            <p class="f-tel">010 - 3104 - 8972</p>
+                            <p>평일 9:00 -  18:00 (점심시간 12:00 - 13:00)</p>
+                        </div>
                     </div>
-                    <p class="f-copy">
-                        © 2026 Onsaemiro. All rights reserved.
-                    </p>
-                </div>
-                <div class="right">
-                    <div class="r-spacer" aria-hidden="true"></div>
-                    <p>전화문의</p>
-                    <p class="f-tel">010 - 3104 - 8972</p>
-                    <p>평일 9:00 -  18:00 (점심시간 12:00 - 13:00)</p>
-                </div>
+                </footer>
             </div>
-        </footer>
+           <div class="floating-btn">
+                <div class="chatbot-panel">
+                    <!-- 문의창(홈) -->
+                    <div class="cb-home is-active">
+                        <div class="cb-hero">
+                            <p>ONSAEMIRO</p>
+                        </div>
+                        <div class="cb-body">
+                            <div class="cb-card">
+                                <div class="cb-profile">
+                                    <img src="../onsaemiro/img/chatmain/farmer-icon.svg" alt="" class="cb-avatar">
+                                    <div>
+                                        <p class="cb-name">온새미로 농장 <img src="../onsaemiro/img/chatmain/eco-leaf.svg" alt=""></p>
+                                        <p>안녕하세요.<br>무엇을 도와드릴까요?<br>궁금한 내용을 문의해주세요.</p>
+                                    </div>
+                                </div>
+                                <button class="cb-inquiry">문의하기 <img src="../onsaemiro/img/chatmain/paper-airplane.svg" alt=""></button>
+                                <p>⚡ 빠르게 답변 받으실 수 있어요</p>
+                            </div>
+                            <div class="cb-card">운영시간 | 10:00 - 17:00</div>
+                            <p class="cb-status"><img src="../onsaemiro/img/chatmain/aichatbot.svg" alt=""> 온새미로 챗봇 이용중</p>
+                        </div>
+                        <nav class="cb-tabs">
+                            <button class="cb-tab is-active" data-screen="home">
+                                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5861 4.58606C18.9611 4.21112 19.4697 4.00049 20.0001 4.00049C20.5304 4.00049 21.039 4.21112 21.4141 4.58606L35.4141 18.5861C35.6937 18.8658 35.8841 19.2221 35.9612 19.61C36.0384 19.9979 35.9988 20.4 35.8474 20.7654C35.6961 21.1308 35.4398 21.4431 35.111 21.6629C34.7822 21.8826 34.3956 22 34.0001 22.0001H32.0001V34.0001C32.0001 34.5305 31.7893 35.0392 31.4143 35.4143C31.0392 35.7893 30.5305 36.0001 30.0001 36.0001H26.0001C25.4696 36.0001 24.9609 35.7893 24.5858 35.4143C24.2108 35.0392 24.0001 34.5305 24.0001 34.0001V28.0001C24.0001 27.4696 23.7893 26.9609 23.4143 26.5858C23.0392 26.2108 22.5305 26.0001 22.0001 26.0001H18.0001C17.4696 26.0001 16.9609 26.2108 16.5858 26.5858C16.2108 26.9609 16.0001 27.4696 16.0001 28.0001V34.0001C16.0001 34.5305 15.7893 35.0392 15.4143 35.4143C15.0392 35.7893 14.5305 36.0001 14.0001 36.0001H10.0001C9.46963 36.0001 8.96092 35.7893 8.58585 35.4143C8.21078 35.0392 8.00006 34.5305 8.00006 34.0001V22.0001H6.00006C5.60456 22 5.21796 21.8826 4.88915 21.6629C4.56033 21.4431 4.30405 21.1308 4.15271 20.7654C4.00137 20.4 3.96176 19.9979 4.0389 19.61C4.11603 19.2221 4.30644 18.8658 4.58606 18.5861L18.5861 4.58606Z" fill="currentColor"/>
+                                </svg>
+                                <span>홈</span>
+                            </button>
+                            <button class="cb-tab" data-screen="chat">
+                                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19.9999 3.3335C29.2049 3.3335 36.6666 10.7952 36.6666 20.0002C36.6666 29.2052 29.2049 36.6668 19.9999 36.6668C16.9635 36.6716 13.9842 35.8425 11.3866 34.2702L6.33327 35.7568C6.04313 35.8422 5.73535 35.8478 5.44229 35.7731C5.14923 35.6984 4.88172 35.5461 4.66786 35.3322C4.45401 35.1184 4.30172 34.8509 4.22701 34.5578C4.15229 34.2647 4.15791 33.957 4.24327 33.6668L5.72993 28.6135C4.15835 26.0156 3.3294 23.0364 3.33327 20.0002C3.33327 10.7952 10.7949 3.3335 19.9999 3.3335ZM19.9999 6.66683C17.6126 6.6664 15.269 7.30692 13.2138 8.52152C11.1586 9.73612 9.46719 11.4802 8.3162 13.5717C7.16521 15.6632 6.59687 18.0254 6.67053 20.4115C6.74418 22.7977 7.45714 25.1203 8.73493 27.1368C9.11327 27.7318 9.24327 28.4818 9.02993 29.2035L8.29493 31.7052L10.7966 30.9702C11.5183 30.7568 12.2683 30.8868 12.8633 31.2652C14.6105 32.3715 16.5911 33.0562 18.6485 33.2652C20.7059 33.4742 22.7838 33.2018 24.7178 32.4695C26.6518 31.7371 28.3889 30.565 29.7919 29.0456C31.1948 27.5263 32.2252 25.7014 32.8014 23.7153C33.3776 21.7292 33.484 19.6363 33.112 17.602C32.74 15.5677 31.9 13.6478 30.6582 11.9941C29.4165 10.3404 27.8071 8.99822 25.9573 8.07363C24.1075 7.14905 22.0679 6.66742 19.9999 6.66683ZM14.1666 17.5002C14.8296 17.5002 15.4655 17.7636 15.9344 18.2324C16.4032 18.7012 16.6666 19.3371 16.6666 20.0002C16.6666 20.6632 16.4032 21.2991 15.9344 21.7679C15.4655 22.2368 14.8296 22.5002 14.1666 22.5002C13.5036 22.5002 12.8677 22.2368 12.3988 21.7679C11.93 21.2991 11.6666 20.6632 11.6666 20.0002C11.6666 19.3371 11.93 18.7012 12.3988 18.2324C12.8677 17.7636 13.5036 17.5002 14.1666 17.5002ZM25.8333 17.5002C26.4963 17.5002 27.1322 17.7636 27.601 18.2324C28.0699 18.7012 28.3333 19.3371 28.3333 20.0002C28.3333 20.6632 28.0699 21.2991 27.601 21.7679C27.1322 22.2368 26.4963 22.5002 25.8333 22.5002C25.1702 22.5002 24.5343 22.2368 24.0655 21.7679C23.5967 21.2991 23.3333 20.6632 23.3333 20.0002C23.3333 19.3371 23.5967 18.7012 24.0655 18.2324C24.5343 17.7636 25.1702 17.5002 25.8333 17.5002Z" fill="currentColor"/>
+                                </svg>
+                                <span>대화</span>
+                            </button>
+                            <button class="cb-tab" data-screen="setting">
+                                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.2666 35C17.8788 35 17.5427 34.8728 17.2583 34.6183C16.9727 34.3639 16.7955 34.0467 16.7266 33.6667L16.2883 30.18C15.7561 30.0189 15.1805 29.7667 14.5616 29.4233C13.9438 29.0789 13.4177 28.71 12.9833 28.3167L9.79162 29.69C9.4394 29.8456 9.08162 29.8622 8.71829 29.74C8.35495 29.6178 8.07495 29.3872 7.87829 29.0483L6.07995 25.95C5.88329 25.6111 5.82551 25.2567 5.90662 24.8867C5.98773 24.5167 6.18106 24.2133 6.48662 23.9767L9.27329 21.8933C9.22329 21.5911 9.18273 21.2806 9.15162 20.9617C9.11829 20.6417 9.10162 20.3311 9.10162 20.03C9.10162 19.75 9.11829 19.4556 9.15162 19.1467C9.18273 18.8378 9.22329 18.49 9.27329 18.1033L6.48662 16.02C6.18106 15.7833 5.99329 15.475 5.92329 15.095C5.85329 14.715 5.91607 14.355 6.11162 14.015L7.87829 11.015C8.07495 10.6961 8.35495 10.4706 8.71829 10.3383C9.08162 10.2061 9.4394 10.2178 9.79162 10.3733L12.9516 11.7133C13.4494 11.2989 13.9883 10.925 14.5683 10.5917C15.1461 10.2583 15.7088 10.0006 16.2566 9.81834L16.7283 6.33167C16.7961 5.95167 16.9727 5.63445 17.2583 5.38001C17.5438 5.12556 17.88 4.9989 18.2666 5.00001H21.7333C22.1211 5.00001 22.4572 5.12723 22.7416 5.38167C23.0272 5.63612 23.2044 5.95334 23.2733 6.33334L23.7116 9.85334C24.3505 10.0778 24.915 10.335 25.405 10.625C25.895 10.915 26.4 11.2783 26.92 11.715L30.24 10.375C30.5933 10.2195 30.9516 10.2078 31.315 10.34C31.6783 10.4722 31.9577 10.6978 32.1533 11.0167L33.92 14.0483C34.1166 14.3883 34.1744 14.7428 34.0933 15.1117C34.0122 15.4806 33.8188 15.7845 33.5133 16.0233L30.6 18.2C30.6911 18.5445 30.7422 18.8606 30.7533 19.1483C30.7644 19.4361 30.77 19.7195 30.77 19.9983C30.77 20.2572 30.7588 20.53 30.7366 20.8167C30.7155 21.1045 30.6666 21.4522 30.59 21.86L33.4066 23.9767C33.7122 24.2133 33.9111 24.5167 34.0033 24.8867C34.0955 25.2567 34.0433 25.6111 33.8466 25.95L32.07 29.015C31.8744 29.355 31.5894 29.5856 31.215 29.7067C30.8405 29.8289 30.4772 29.8122 30.125 29.6567L26.92 28.2833C26.4011 28.72 25.8788 29.0939 25.3533 29.405C24.8277 29.7161 24.2805 29.9633 23.7116 30.1467L23.2716 33.665C23.2038 34.045 23.0272 34.3622 22.7416 34.6167C22.4561 34.8711 22.12 34.9989 21.7333 35H18.2666ZM19.955 24.1667C21.1172 24.1667 22.1022 23.7628 22.91 22.955C23.7177 22.1472 24.1216 21.1622 24.1216 20C24.1216 18.8378 23.7177 17.8528 22.91 17.045C22.1022 16.2372 21.1172 15.8333 19.955 15.8333C18.7861 15.8333 17.7994 16.2372 16.995 17.045C16.1905 17.8528 15.7883 18.8378 15.7883 20C15.7883 21.1622 16.1905 22.1472 16.995 22.955C17.7994 23.7628 18.7861 24.1667 19.955 24.1667Z" fill="currentColor"/>
+                                </svg>
+                                <span>설정</span>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <!-- 대화창 -->
+                    <div class="cb-chat">
+                        <div class="cb-chat-head">
+                            <button class="cb-back" aria-label="뒤로가기">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2.5"
+                                        stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <img src="../onsaemiro/img/chatmain/farmer-icon.svg" alt="" class="cb-avatar">
+                            <div>
+                                <p class="cb-name">온새미로 농장 <img src="../onsaemiro/img/chatmain/eco-leaf.svg" alt=""></p>
+                                <p>운영시간 | 10:00 - 17:00</p>
+                            </div>
+                        </div>
+                        <p class="cb-notice">📢 체리 수확이 한창 진행 중입니다! 🍒</p>
+                        <div class="cb-messages">
+                            <p class="cb-bot">안녕하세요. : )<br>온새미로 농장입니다.<br>무엇을 도와드릴까요?</p>
+                            <div class="cb-quick">
+                                <button>배송 조회 / 문의</button>
+                                <button>주문취소 문의</button>
+                                <button>제철 농산물 문의</button>
+                                <button>교환 / 반품 문의</button>
+                                <button>가격 / 배송비 문의</button>
+                                <button>대량주문 문의</button>
+                            </div>
+                            <p class="cb-user">제철 농산물 문의</p>
+                            <p class="cb-bot">지금 온새미로에서 만나볼 수 있는<br>제철 농산물이에요 🌿<br><br>🍒 체리<br>- 지금 가장 당도 높은 시즌이에요</p>
+                        </div>
+                        <div class="cb-input">
+                            <textarea placeholder="AI에게 질문해 주세요." rows="1"></textarea>
+                            <div>
+                                <span>
+                                    <img src="../onsaemiro/img/chatsub/clip.svg" alt="첨부">
+                                    <img src="../onsaemiro/img/chatsub/happy-outline.svg" alt="이모지">
+                                </span>
+                                <button><img src="../onsaemiro/img/chatsub/arrow-chat.svg" alt="전송"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 챗봇 버튼 -->
+                <button class="chatbot-btn" aria-label="AI 챗봇">
+                    <img src="../onsaemiro/img/chatbot.svg" alt="" class="ico-sprout">
+                    <span>AI 챗봇</span>
+                    <img src="../onsaemiro/img/close.svg" alt="" class="ico-close">
+                </button>
+
+                <!-- 탑버튼 (기존) -->
+                <button class="top-btn" aria-label="맨 위로">
+                    <img src="../onsaemiro/img/topbtn.svg" alt="">
+                </button>
+
+            </div>
+        </div>        
     </div>
      
     <script src="main.js"></script>
