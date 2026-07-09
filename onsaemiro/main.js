@@ -50,15 +50,12 @@ const swiper = new Swiper('.g-slider', {
     },
 });
 
+// 버튼 클릭 (버튼 active만 처리)
 document.querySelectorAll('[data-season]').forEach(btn => {
   btn.addEventListener('click', (e) => {
     const season = e.target.dataset.season;
-    const slideIndex = startIndices[season];
+    swiper.slideToLoop(startIndices[season]);
     
-    // 클릭한 계절의 첫 번째 이미지로 슬라이더 이동
-    swiper.slideToLoop(slideIndex);
-    
-    // 버튼 active 상태 업데이트 (필수)
     document.querySelectorAll('[data-season]').forEach(b => {
       b.classList.remove('active');
     });
@@ -66,22 +63,18 @@ document.querySelectorAll('[data-season]').forEach(btn => {
   });
 });
 
-swiper.on('slideChange', () => {
-  const currentIndex = swiper.realIndex; // loop 무시하고 실제 인덱스
-  
-  // 현재 인덱스가 어느 계절에 속하는지 파악
-  let activeSeason = 'spring';
-  if (currentIndex >= 8) activeSeason = 'winter';
-  else if (currentIndex >= 5) activeSeason = 'fall';
-  else if (currentIndex >= 1) activeSeason = 'summer';
-  
-  // 버튼 active 업데이트
-  document.querySelectorAll('[data-season]').forEach(b => {
-    b.classList.remove('active');
-  });
-  document.querySelector(`[data-season="${activeSeason}"]`).classList.add('active');
+// 화살표로 넘길 때 (애니메이션 완료 후)
+swiper.on('slideChangeTransitionEnd', () => {
+  const activeSlide = document.querySelector('.g-slider .swiper-slide-active');
+  if (activeSlide && activeSlide.dataset.season) {
+    const season = activeSlide.dataset.season;
+    
+    document.querySelectorAll('[data-season]').forEach(b => {
+      b.classList.remove('active');
+    });
+    document.querySelector(`[data-season="${season}"]`).classList.add('active');
+  }
 });
-
 
 // 리뷰 섹션 - 슬라이더
 const reviewSwiper = new Swiper('.r-slider', {
