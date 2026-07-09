@@ -51,8 +51,48 @@ const reviewSwiper = new Swiper('.r-slider', {
     },
 });
 
+
 // aos 스크립트 라이브러리
 AOS.init({
     duration: 1000,
     delay: 200
 });
+
+// 스크롤 로직
+const topBtn = document.querySelector('.top-btn');
+
+window.addEventListener('scroll', () => {
+    topBtn.classList.toggle('show', window.scrollY > 300);
+});
+
+topBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// chat bot
+const floatingBtn = document.querySelector('.floating-btn');
+const chatbotBtn = document.querySelector('.chatbot-btn');
+const cbTabs = document.querySelectorAll('.cb-tab');
+const cbHome = document.querySelector('.cb-home');
+const cbChat = document.querySelector('.cb-chat');
+const cbInquiry = document.querySelector('.cb-inquiry');
+const cbBack = document.querySelector('.cb-back');
+
+// 열기/닫기
+chatbotBtn.addEventListener('click', () => {
+    floatingBtn.classList.toggle('is-open');
+});
+
+// 화면 전환
+function showScreen(name) {
+    cbHome.classList.toggle('is-active', name === 'home');
+    cbChat.classList.toggle('is-active', name === 'chat');
+    cbTabs.forEach(t => t.classList.toggle('is-active', t.dataset.screen === name));
+}
+
+cbTabs.forEach(tab => {
+    tab.addEventListener('click', () => showScreen(tab.dataset.screen));
+});
+
+cbInquiry.addEventListener('click', () => showScreen('chat'));
+cbBack.addEventListener('click', () => showScreen('home'));
