@@ -8,17 +8,36 @@ menuBtn.addEventListener('click', () => {
 });
 
 // 기타농산물 - 슬라이더
+const seasonData = {
+    spring: 1,
+    summer: 4,
+    fall: 3,
+    winter: 2
+};
+
+const seasons = Object.keys(seasonData);
+const startIndices = {};
+let currentIndex = 0;
+
+seasons.forEach(season => {
+  startIndices[season] = currentIndex;
+  currentIndex += seasonData[season];
+});
+
 const swiper = new Swiper('.g-slider', {
     loop: true,
     slidesPerView: 3,
     spaceBetween: 10,
+    loopedSlides: 3,
     breakpoints: {
         768: {
             slidesPerView: 4,
             spaceBetween: 20,
+            loopedSlides: 4,
         },
         1024: {
             slidesPerView: 5,
+            loopedSlides: 5,
             spaceBetween: 30,
         },
     },
@@ -29,6 +48,22 @@ const swiper = new Swiper('.g-slider', {
          nextEl: '.progrid-wrap .swiper-button-next',
          prevEl: '.progrid-wrap .swiper-button-prev',
     },
+});
+
+document.querySelectorAll('[data-season]').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const season = e.target.dataset.season;
+    const slideIndex = startIndices[season];
+    
+    // 클릭한 계절의 첫 번째 이미지로 슬라이더 이동
+    swiper.slideToLoop(slideIndex);
+    
+    // 버튼 active 상태 업데이트 (필수)
+    document.querySelectorAll('[data-season]').forEach(b => {
+      b.classList.remove('active');
+    });
+    e.target.classList.add('active');
+  });
 });
 
 // 리뷰 섹션 - 슬라이더
