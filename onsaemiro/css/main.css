@@ -471,7 +471,7 @@ nav a {
     margin: 0 auto;
     padding: 0 clamp(24px, 5vw, 80px);
     border-radius: 40px;
-    background: url(../img/farmer-img.png) no-repeat center / cover;
+    background: url(../img/story-card.jpg) no-repeat center / cover;
     color: var(--white);
     overflow: hidden;
 }
