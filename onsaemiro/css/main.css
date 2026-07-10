@@ -1492,7 +1492,7 @@ footer {
 .cb-tabs {
     flex-shrink: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     padding: 10px 0;
     background: none;    
@@ -1513,8 +1513,8 @@ footer {
     color: var(--tab-active);
 }
 .cb-tab svg {
-    width: 26px;
-    height: 26px;
+    width: 32px;
+    height: 32px;
 }
 .cb-tab span {
     font-size: 12px;
