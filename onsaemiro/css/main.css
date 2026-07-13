@@ -1039,6 +1039,10 @@ nav a {
     .bg {
         height: 15dvh;
     }
+    .gallery-sec,
+    .bg {
+        background-attachment: scroll;   /* 추가 */
+    }
 }
 
 /* contact-sec */
