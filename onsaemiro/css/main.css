@@ -1122,6 +1122,7 @@ nav a {
 .sticky-box {
     position: relative;
     z-index: 10;
+    background-color: var(--f-back);
 }
 
 /* footer */
