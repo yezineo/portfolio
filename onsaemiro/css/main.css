@@ -1103,11 +1103,6 @@ nav a {
 .m-br { display: none; }
 
 /* Mobile */
-@media (max-width: 768px) {
-    .contact-sec {
-        min-height: 80vh;
-    }
-}
 @media (max-width: 500px) {
     .m-br { display: block; }
 }
