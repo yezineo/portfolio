@@ -1039,10 +1039,6 @@ nav a {
     .bg {
         height: 15dvh;
     }
-    .gallery-sec,
-    .bg {
-        background-attachment: scroll;   /* 추가 */
-    }
 }
 
 /* contact-sec */
@@ -1069,10 +1065,7 @@ nav a {
     aspect-ratio: 1920 / 300;
     background: url(../img/cloud.svg) no-repeat bottom center / 100% 100%;
     pointer-events: none;
-    z-index: 1;   /* 추가 */
-
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    z-index: 1;
 }
 .contact-inner {
     position: relative;
@@ -1122,7 +1115,6 @@ nav a {
 }
 /* contact ~ footer sticky reveal */
 .relative {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
 }
@@ -1130,8 +1122,6 @@ nav a {
 .sticky-box {
     position: relative;
     z-index: 10;
-    will-change: transform;      /* 레이어 승격 */
-    transform: translateZ(0);    /* GPU 레이어 강제 */
 }
 
 /* footer */
