@@ -1122,6 +1122,7 @@ nav a {
 }
 /* contact ~ footer sticky reveal */
 .relative {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
 }
