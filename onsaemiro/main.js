@@ -9,10 +9,10 @@ menuBtn.addEventListener('click', () => {
 
 // 기타농산물 - 슬라이더
 const seasonData = {
-    spring: 1,
-    summer: 4,
-    fall: 3,
-    winter: 2
+    spring: 2,
+    summer: 2,
+    fall: 8,
+    winter: 1
 };
 
 const seasons = Object.keys(seasonData);
