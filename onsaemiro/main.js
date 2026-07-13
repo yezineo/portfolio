@@ -7,6 +7,53 @@ menuBtn.addEventListener('click', () => {
     menuBtn.classList.toggle('is-open');
 });
 
+// 스크롤 네비바
+const menuWrap = document.querySelector('.menu-wrap');
+const menuItems = menuWrap.querySelectorAll('li');
+const navSections = document.querySelectorAll('#products, #story, #gallery, #contact');
+
+window.addEventListener('scroll', () => {
+    menuWrap.classList.toggle('show', window.scrollY > 100);
+
+    navSections.forEach((section, i) => {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= 200 && rect.bottom >= 200) {
+            menuItems.forEach(item => item.classList.remove('active'));
+            menuItems[i].classList.add('active');
+        }
+    });
+});
+
+// 네비 클릭 이동 (sticky 대응)
+document.querySelectorAll('nav a, .menu-wrap a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href');
+        if (!targetId.startsWith('#')) return;
+
+        e.preventDefault();
+
+        let top;
+        if (targetId === '#gallery') {
+            const stickyBox = document.querySelector('.sticky-box');
+            const relative = document.querySelector('.relative');
+            top = stickyBox.offsetTop - relative.offsetHeight;  // 갤러리 원래 자리
+        } else if (targetId === '#contact') {
+            top = document.querySelector('.sticky-box').offsetTop;
+        } else {
+            const target = document.querySelector(targetId);
+            if (!target) return;
+            top = target.offsetTop;
+        }
+
+        window.scrollTo({ top, behavior: 'smooth' });
+
+        // 모바일 메뉴 닫기 ← 여기
+        document.querySelector('nav').classList.remove('is-open');
+        document.querySelector('.menu-btn').classList.remove('is-open');
+    });
+});
+
 // 기타농산물 - 슬라이더
 const seasonData = {
     spring: 2,
@@ -26,9 +73,9 @@ seasons.forEach(season => {
 
 const swiper = new Swiper('.g-slider', {
     loop: true,
-    slidesPerView: 3,
+    slidesPerView: 2,
     spaceBetween: 10,
-    loopedSlides: 3,
+    loopedSlides: 2,
     breakpoints: {
         768: {
             slidesPerView: 4,
