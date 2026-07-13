@@ -1060,14 +1060,15 @@ nav a {
 
     padding: clamp(60px, 8vw, 120px) clamp(16px, 4vw, 40px);
 }
-.contact-cloud {
+.contact-sec::before {
+    content: '';
     position: absolute;
-    bottom: 100%;
     left: 0;
+    bottom: 100%;
     width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: -1px;
+    aspect-ratio: 1920 / 300;
+    background: url(../img/cloud.svg) no-repeat bottom center / 100% 100%;
+    pointer-events: none;
 }
 .contact-inner {
     position: relative;
