@@ -937,6 +937,7 @@ nav a {
     padding-left: 0;
     padding-right: 0;
     background-attachment: fixed;
+    padding-bottom: 15vh;
 }
 .gallery-txt {
     display: flex;
@@ -1004,14 +1005,16 @@ nav a {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
 }
-.bg {
+/* .bg {
     height: 50dvh;
     background-color: var(--light-green);
     background-image: radial-gradient(color-mix(in srgb, var(--slider-green) 20%, transparent) 3px, transparent 3px), radial-gradient(color-mix(in srgb, var(--slider-green) 20%, transparent) 3px, transparent 3px);
     background-size: 40px 40px;
     background-position: 0 0, 20px 20px;
     background-attachment: fixed;
-}
+    z-index: -1;
+    position: relative;
+} */
 
 /* Mobile */
 @media (max-width: 768px) {
@@ -1036,9 +1039,9 @@ nav a {
         flex: none;          /* 폭 고정 해제 */
         padding-top: 0;      /* 위 여백도 제거 */
     }
-    .bg {
+    /* .bg {
         height: 15dvh;
-    }
+    } */
 }
 
 /* contact-sec */
