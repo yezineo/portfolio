@@ -1070,6 +1070,9 @@ nav a {
     background: url(../img/cloud.svg) no-repeat bottom center / 100% 100%;
     pointer-events: none;
     z-index: 1;   /* 추가 */
+
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 .contact-inner {
     position: relative;
@@ -1126,6 +1129,8 @@ nav a {
 .sticky-box {
     position: relative;
     z-index: 10;
+    will-change: transform;      /* 레이어 승격 */
+    transform: translateZ(0);    /* GPU 레이어 강제 */
 }
 
 /* footer */
