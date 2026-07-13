@@ -130,7 +130,6 @@ nav a {
 .menu-btn.is-open span:nth-child(3) {
     transform: translateY(-6px) rotate(-45deg);
 }
-
 /* Mobile */
 @media (max-width: 768px) {
     header {
@@ -176,6 +175,43 @@ nav a {
     }
     .menu-btn {
         display: flex;
+    }
+}
+/* 스크롤 네비바 */
+.menu-wrap {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    justify-content: center;
+    width: max-content;
+    max-width: calc(100% - 40px);   /* 넘칠 때만 제한 */
+    padding: 0 16px;
+    border-radius: 999px;
+    background-color: var(--back-50);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    z-index: 99;
+}
+.menu-wrap.show {
+    display: flex;
+}
+.menu-wrap a {
+    display: block;
+    padding: 14px clamp(18px, 2.5vw, 40px);   /* 좌우만 변경 */
+    font-size: clamp(13px, 1.4vw, 16px);
+    font-weight: 600;
+    color: var(--txt-primary);
+}
+.menu-wrap li.active a {
+    color: var(--tab-active);
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .menu-wrap {
+        display: none !important;
     }
 }
 
