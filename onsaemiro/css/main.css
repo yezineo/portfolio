@@ -1324,6 +1324,7 @@ footer {
     width: 30%;   
     height: auto;
 }
+
 /* 챗봇 버튼 */
 .chatbot-btn {
     display: flex;
@@ -1700,4 +1701,324 @@ footer {
 .cb-input > div > button img {
     width: 16px;
     height: auto;
+}
+
+/* 답변 안 연결 버튼 */
+.cb-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+.cb-link {
+    padding: 6px 12px;
+    border: 1px solid var(--tab-default);
+    border-radius: 14px;
+    background-color: var(--green);
+    color: var(--tab-active);
+    font-size: 12px;
+    font-weight: 600;
+}
+.cb-link:hover {
+    background-color: var(--icon2);
+}
+
+/* 닫기 버튼 (모바일 전용) */
+.cb-close { display: none; }
+
+/* Mobile: 챗봇 화면 꽉 차게 */
+@media (max-width: 768px) {
+    .floating-btn.is-open {
+        z-index: 200;          /* 헤더(100)보다 위로 */
+    }
+    .chatbot-panel {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100dvh;
+        border-radius: 0;
+    }
+    .floating-btn.is-open .chatbot-btn,
+    .floating-btn.is-open .top-btn {
+        display: none;         /* 열려 있을 땐 아래 버튼 숨김 */
+    }
+    .cb-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border: none;
+        background: none;
+        color: var(--white);
+        cursor: pointer;
+    }
+    .cb-close svg {
+        width: 22px;
+        height: 22px;
+    }
+    body.cb-open {
+        overflow: hidden;      /* 뒤 페이지 스크롤 막기 */
+    }
+}
+
+/* ── 챗봇: 피그마 색 · 모양 맞추기 ── */
+.cb-chat-head {
+    background-color: var(--icon3);
+}
+.cb-notice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--light-green);
+    color: var(--f-back);
+    font-weight: 500;
+}
+.cb-notice img {
+    width: 18px;
+    height: auto;
+}
+.cb-bot {
+    border-color: var(--gray-500-border);
+    border-radius: 20px 20px 20px 0;
+    color: var(--txt-primary);
+}
+.cb-user {
+    background-color: var(--icon3);
+    border-radius: 20px 20px 0 20px;
+}
+.cb-quick button,
+.cb-input > div > button {
+    background-color: var(--icon3);
+}
+.cb-input {
+    background-color: var(--light-green);
+}
+.cb-input textarea::placeholder {
+    color: var(--icon3);
+}
+.cb-status {
+    color: var(--icon3);
+}
+.cb-hero p {
+    font-weight: 800;
+}
+.cb-card > p:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+.cb-card > p:last-child img {
+    width: 16px;
+    height: auto;
+}
+
+/* 챗봇 크기 (PC) — 리움과 같게 */
+@media (min-width: 769px) {
+    .chatbot-panel {
+        width: 390px;
+        height: min(640px, calc(100dvh - 140px));
+    }
+}
+
+/* 챗봇이 항상 맨 위 (헤더 100 · 스크롤 메뉴 99보다 위) */
+.floating-btn {
+    z-index: 200;
+}
+/* 챗봇 열렸을 때 뒤 페이지 스크롤 막기 */
+@media (max-width: 768px) {
+    html.cb-open,
+    html.cb-open body {
+        overflow: hidden;
+    }
+}
+/* 스크롤바가 사라질 때 화면이 옆으로 튀지 않게 */
+html {
+    scrollbar-gutter: stable;
+}
+/* 챗봇 안에서 끝까지 스크롤해도 뒤 페이지로 안 넘어가게 */
+.cb-messages,
+.cb-body {
+    overscroll-behavior: contain;
+}
+
+/* ── 챗봇: 화면 3개(홈 · 목록 · 대화창) + 아래 탭 배치 ── */
+.chatbot-panel {
+    display: flex;
+    flex-direction: column;
+}
+.cb-home,
+.cb-list,
+.cb-chat {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    height: auto;
+}
+.cb-home.is-active,
+.cb-list.is-active,
+.cb-chat.is-active {
+    display: flex;
+}
+.cb-body,
+.cb-messages {
+    min-height: 0;
+}
+.chatbot-panel[data-screen="chat"] .cb-tabs {
+    display: none;            /* 대화창에선 아래 탭 숨김 */
+}
+.chatbot-panel[data-screen="list"] .cb-close {
+    color: var(--txt-primary);   /* 흰 배경에서도 ✕ 보이게 */
+}
+
+/* 대화 목록 */
+.cb-list-head {
+    flex-shrink: 0;
+    padding: 18px 56px 14px 20px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--txt-primary);
+}
+.cb-list-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 4px 16px 16px;
+}
+.cb-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--gray-500-border);
+}
+.cb-empty img {
+    width: 48px;
+    height: auto;
+    opacity: 0.6;
+}
+.cb-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 8px;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--icon2);    /* 연한 초록 테두리 */
+    border-radius: 16px;
+    background-color: var(--white);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.cb-item:hover {
+    background-color: var(--light-green);
+}
+.cb-item-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--txt-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.cb-item-time {
+    font-size: 11px;
+    color: var(--gray-400-pn);
+}
+.cb-item-last {
+    grid-column: 1 / -1;
+    font-size: 12px;
+    color: var(--black-soft);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.cb-list-foot {
+    flex-shrink: 0;
+    padding: 0 16px 12px;
+}
+.cb-new {
+    width: 100%;
+    height: 46px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--icon3);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.cb-new:hover {
+    background-color: var(--tab-active);
+}
+
+/* 대화창 안 쌓이는 말풍선 */
+.cb-log {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ── 대화 목록 카드: 리움처럼 (아바타 + 이름 · 시간 + 마지막 답변) ── */
+.cb-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+.cb-item-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--gray-400-pn);
+    flex-shrink: 0;
+}
+.cb-item-main {
+    flex: 1;
+    min-width: 0;
+}
+.cb-item-top {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+.cb-item-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--txt-primary);
+}
+.cb-item-last {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;          /* 2줄까지만, 넘치면 … */
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    line-height: 1.5;
+}
+
+/* 문의하기 버튼: 꽉 차지 않게 가운데 */
+.cb-list-foot {
+    display: flex;
+    justify-content: center;
+    padding: 0 16px 16px;
+}
+.cb-new {
+    width: auto;
+    min-width: 180px;
+    height: 40px;
+    padding: 0 28px;
+    font-size: 14px;
 }

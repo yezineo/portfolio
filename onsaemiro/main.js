@@ -97,29 +97,25 @@ const swiper = new Swiper('.g-slider', {
     },
 });
 
-// 버튼 클릭 (버튼 active만 처리)
-document.querySelectorAll('[data-season]').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const season = e.target.dataset.season;
+// 계절 버튼 클릭
+const seasonBtns = document.querySelectorAll('.season-tabs button');
+
+seasonBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const season = btn.dataset.season;
     swiper.slideToLoop(startIndices[season]);
-    
-    document.querySelectorAll('[data-season]').forEach(b => {
-      b.classList.remove('active');
-    });
-    e.target.classList.add('active');
+
+    seasonBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
   });
 });
 
-// 화살표로 넘길 때 (애니메이션 완료 후)
+// 화살표로 넘길 때 (애니메이션 완료 후) 탭 표시 맞추기
 swiper.on('slideChangeTransitionEnd', () => {
   const activeSlide = document.querySelector('.g-slider .swiper-slide-active');
   if (activeSlide && activeSlide.dataset.season) {
     const season = activeSlide.dataset.season;
-    
-    document.querySelectorAll('[data-season]').forEach(b => {
-      b.classList.remove('active');
-    });
-    document.querySelector(`[data-season="${season}"]`).classList.add('active');
+    seasonBtns.forEach(b => b.classList.toggle('active', b.dataset.season === season));
   }
 });
 
@@ -161,30 +157,215 @@ topBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// chat bot
+// ===== 챗봇 =====
 const floatingBtn = document.querySelector('.floating-btn');
 const chatbotBtn = document.querySelector('.chatbot-btn');
+const cbPanel = document.querySelector('.chatbot-panel');
 const cbTabs = document.querySelectorAll('.cb-tab');
-const cbHome = document.querySelector('.cb-home');
-const cbChat = document.querySelector('.cb-chat');
-const cbInquiry = document.querySelector('.cb-inquiry');
-const cbBack = document.querySelector('.cb-back');
+const cbScreens = {
+    home: document.querySelector('.cb-home'),
+    list: document.querySelector('.cb-list'),
+    chat: document.querySelector('.cb-chat'),
+};
+const cbMessages = document.querySelector('.cb-messages');
+const cbLog = document.querySelector('.cb-log');
+const cbListBody = document.querySelector('.cb-list-body');
+const cbEmpty = document.querySelector('.cb-empty');
+const cbTextarea = document.querySelector('.cb-input textarea');
+const cbSend = document.querySelector('.cb-send');
 
-// 열기/닫기
-chatbotBtn.addEventListener('click', () => {
-    floatingBtn.classList.toggle('is-open');
+// 열기 / 닫기
+function setChatbot(open) {
+    floatingBtn.classList.toggle('is-open', open);
+    document.documentElement.classList.toggle('cb-open', open);   // 뒤 페이지 스크롤 막기 (html에 걸어야 함)
+    chatbotBtn.setAttribute('aria-expanded', open);
+    chatbotBtn.setAttribute('aria-label', open ? '챗봇 닫기' : '챗봇 열기');
+}
+chatbotBtn.addEventListener('click', () => setChatbot(!floatingBtn.classList.contains('is-open')));
+document.querySelector('.cb-close').addEventListener('click', () => setChatbot(false));
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setChatbot(false);   // ESC로도 닫기
 });
 
-// 화면 전환
+// 화면 전환 (홈 / 대화 목록 / 대화창)
 function showScreen(name) {
-    cbHome.classList.toggle('is-active', name === 'home');
-    cbChat.classList.toggle('is-active', name === 'chat');
+    Object.entries(cbScreens).forEach(([key, el]) => el.classList.toggle('is-active', key === name));
     cbTabs.forEach(t => t.classList.toggle('is-active', t.dataset.screen === name));
+    cbPanel.dataset.screen = name;
+    if (name === 'list') renderList();
+}
+cbTabs.forEach(tab => tab.addEventListener('click', () => showScreen(tab.dataset.screen)));
+document.querySelectorAll('.cb-inquiry, .cb-new').forEach(btn => btn.addEventListener('click', startNewChat));
+document.querySelector('.cb-back').addEventListener('click', () => showScreen('list'));
+
+// ▼ 답변 문구 — 실제 답을 받으면 여기 글자만 바꾸면 돼요
+const CONTACT_LINKS =
+    '<div class="cb-links">' +
+    '<a href="tel:01031048972" class="cb-link">📞 전화 문의</a>' +
+    '<a href="https://pf.kakao.com/_xeBFwX/chat" target="_blank" rel="noopener" class="cb-link">💬 카카오톡 문의</a>' +
+    '</div>';
+
+const TEMP_ANSWER =
+    '확인이 필요한 내용이라<br>전화나 카카오톡으로 문의해 주세요.<br>평일 9:00 - 18:00 (점심 12:00 - 13:00)';
+
+const faqAnswers = {
+    delivery: TEMP_ANSWER,                    // 배송 조회
+    cancel: TEMP_ANSWER,                      // 주문취소
+    season: '온새미로에서 계절마다 만나볼 수 있는 농산물이에요 🌿<br><br>' +
+            '봄 : 체리, 체리잼<br>' +
+            '여름 : 옥수수, 마늘<br>' +
+            '가을 : 사과, 사과즙, 들깨, 참깨, 배추, 호두, 백두 · 녹두(콩)<br>' +
+            '겨울 : 도라지<br><br>' +
+            '수확 시기에 따라 품목이 달라질 수 있어요.',
+    return: TEMP_ANSWER,                      // 교환 · 반품
+    price: '가격과 재고는 수확 시기에 따라 달라서<br>문의하시면 안내해 드려요.', // 배송비는 부모님 확인 후 추가
+    bulk: TEMP_ANSWER,                        // 대량주문
+};
+
+const AI_READY = 'AI 답변은 준비 중이에요.<br>위의 버튼을 누르거나 전화 · 카카오톡으로 문의해 주세요.';
+// ▲ 답변 문구 끝
+
+// ▼ 대화 저장 (이 브라우저에만)
+const STORE_KEY = 'onsaemiro-chats';
+function loadChats() {
+    try {
+        return JSON.parse(localStorage.getItem(STORE_KEY)) || [];
+    } catch (e) {
+        return [];
+    }
+}
+function saveChats() {
+    try {
+        localStorage.setItem(STORE_KEY, JSON.stringify(chats));
+    } catch (e) {
+        // 저장이 막힌 브라우저(시크릿 창 등)면 저장만 건너뜀
+    }
+}
+let chats = loadChats();
+let currentId = null;   // 지금 보고 있는 대화 (null이면 새 대화)
+
+function formatTime(ms) {
+    const min = Math.floor((Date.now() - ms) / 60000);
+    if (min < 1) return '방금';
+    if (min < 60) return `${min}분 전`;
+
+    const d = new Date(ms);
+    const pad = n => String(n).padStart(2, '0');
+    if (d.toDateString() === new Date().toDateString()) {
+        return `${pad(d.getHours())}:${pad(d.getMinutes())}`;   // 오늘이면 시간
+    }
+    return `${d.getMonth() + 1}/${d.getDate()}`;                // 지난 날이면 날짜
+}
+function toPlain(html) {
+    const div = document.createElement('div');
+    div.innerHTML = html.replace(/<br\s*\/?>/g, ' ');
+    return div.textContent;
 }
 
-cbTabs.forEach(tab => {
-    tab.addEventListener('click', () => showScreen(tab.dataset.screen));
+// 대화 목록 그리기
+function renderList() {
+    cbListBody.querySelectorAll('.cb-item').forEach(el => el.remove());
+    cbEmpty.hidden = chats.length > 0;
+
+    chats.slice()
+        .sort((a, b) => b.updatedAt - a.updatedAt)   // 최근 대화가 위로
+        .forEach(chat => {
+            const last = chat.messages[chat.messages.length - 1];
+
+            const item = document.createElement('button');
+            item.type = 'button';
+            item.className = 'cb-item';
+            item.innerHTML =
+                '<img src="img/chatmain/farmer-icon.svg" alt="" class="cb-item-avatar">' +
+                '<div class="cb-item-main">' +
+                    '<div class="cb-item-top">' +
+                        '<span class="cb-item-name">온새미로 농장</span>' +
+                        '<span class="cb-item-time"></span>' +
+                    '</div>' +
+                    '<p class="cb-item-last"></p>' +
+                '</div>';
+
+            item.querySelector('.cb-item-time').textContent = formatTime(chat.updatedAt);
+            item.querySelector('.cb-item-last').textContent =
+                last.who === 'user' ? last.text : toPlain(last.text);   // 마지막 말 (보통 챗봇 답)
+
+            item.addEventListener('click', () => openChat(chat.id));
+            cbListBody.appendChild(item);
+        });
+}
+
+// 말풍선 그리기
+function drawBot(html) {
+    const msg = document.createElement('div');
+    msg.className = 'cb-bot';
+    msg.innerHTML = html + CONTACT_LINKS;
+    cbLog.appendChild(msg);
+}
+function drawUser(text) {
+    const msg = document.createElement('p');
+    msg.className = 'cb-user';
+    msg.textContent = text;   // 사용자가 쓴 글은 textContent로 (코드 실행 방지)
+    cbLog.appendChild(msg);
+}
+function scrollDown() {
+    cbMessages.scrollTop = cbMessages.scrollHeight;
+}
+
+// 새 대화 / 지난 대화 열기
+function startNewChat() {
+    currentId = null;
+    cbLog.innerHTML = '';
+    showScreen('chat');
+    cbMessages.scrollTop = 0;
+}
+function openChat(id) {
+    const chat = chats.find(c => c.id === id);
+    if (!chat) return;
+    currentId = id;
+    cbLog.innerHTML = '';
+    chat.messages.forEach(m => (m.who === 'user' ? drawUser(m.text) : drawBot(m.text)));
+    showScreen('chat');
+    scrollDown();
+}
+
+// 말하기 = 화면에 그리고 + 저장
+function say(who, text) {
+    if (who === 'user') drawUser(text);
+    else drawBot(text);
+
+    let chat = chats.find(c => c.id === currentId);
+    if (!chat) {   // 첫 메시지면 새 대화 만들기 (제목 = 첫 질문)
+        chat = { id: Date.now(), title: text, updatedAt: Date.now(), messages: [] };
+        chats.push(chat);
+        currentId = chat.id;
+    }
+    chat.messages.push({ who, text });
+    chat.updatedAt = Date.now();
+    saveChats();
+    scrollDown();
+}
+
+// 질문 버튼
+document.querySelectorAll('.cb-quick button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        say('user', btn.textContent);
+        say('bot', faqAnswers[btn.dataset.faq]);
+    });
 });
 
-cbInquiry.addEventListener('click', () => showScreen('chat'));
-cbBack.addEventListener('click', () => showScreen('home'));
+// 입력창 (AI는 나중에)
+function sendText() {
+    const text = cbTextarea.value.trim();
+    if (!text) return;
+    cbTextarea.value = '';
+    say('user', text);
+    say('bot', AI_READY);
+}
+cbSend.addEventListener('click', sendText);
+cbTextarea.addEventListener('keydown', (e) => {
+    // 한글 입력 중 Enter는 무시 (두 번 보내지는 것 방지)
+    if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
+        e.preventDefault();
+        sendText();
+    }
+});
